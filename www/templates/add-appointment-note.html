@@ -1,0 +1,27 @@
+<ion-view title="details" id="item-details">
+    <div class="custom-header custom-header-slim">
+        <a class="menu-close-btn" ng-click="goBack(true);">
+            <i class="j-arrow-l"></i>
+        </a>
+    </div>
+    <ion-content padding="true" class="has-custom-header has-custom-header-slim">
+        <div class="label label-warning text-center">
+            <p ng-repeat="error in errors">
+                {{error}}
+            </p>
+        </div>
+        <div class="date-badge-container">
+            <div class="badge-date" ng-bind-html="details.date | toBadgeDate">
+
+            </div>
+            <div class="badge-hour">{{details.date | toBadgeHour}}</div>
+        </div>
+        <div class="details-heading">{{details.name}}</div>
+        <div class="details-description">{{details.description}}</div>
+
+        <div class="note_text_container">
+            <textarea class="note_text" name="note_text" ng-model="form.note_text" placeholder="Започни да пишеш...."></textarea>
+            <a class="btn-no-border-float-right" href="javascript:void (0);" ng-click="saveAppointmentNote($event)">готово</a>
+        </div>
+    </ion-content>
+</ion-view>

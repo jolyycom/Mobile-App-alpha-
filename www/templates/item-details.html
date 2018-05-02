@@ -1,0 +1,70 @@
+<ion-view title="details" id="item-details">
+    <div class="custom-header custom-header-slim">
+        <a class="menu-close-btn" ng-click="goBack(true);">
+            <i class="j-arrow-l"></i>
+        </a>
+    </div>
+    <ion-content padding="true" class="has-custom-header has-custom-header-slim">
+        <div class="label label-warning text-center">
+            <p ng-repeat="error in errors">
+                {{error}}
+            </p>
+        </div>
+        <div class="date-badge-container">
+            <div class="badge-date" ng-bind-html="details.date | toBadgeDate">
+
+            </div>
+            <div class="badge-hour">{{details.date | toBadgeHour}}</div>
+        </div>
+        <div class="details-heading">{{details.name}}</div>
+        <div class="details-description">{{details.description}}</div>
+        <table>
+            <tr>
+                <td ng-repeat="cat in details.categories" class="category-column">
+                    <!--Categories-->
+                            <i class="{{cat.icon}}"></i>
+                            <span>{{cat.name}}</span>
+                </td>
+                <td>
+                    <!--Duration-->
+                    <i class="j-clock"></i>
+                    <span>{{details.duration}} мин</span>
+                </td>
+                <td>
+                    <!--Client-->
+                    <span class="client-image" style="background-image: url('{{details.clientImage | orDefaultImage}}');"></span>
+                    <span class="client-name">{{details.client}}</span>
+                </td>
+            </tr>
+        </table>
+        <div class="text-center">
+            <a class="btn btn-no-border" ui-sref="add-appointment-note({itemId:details.id})">ДОБАВИ БЕЛЕЖКА</a>
+        </div>
+        <ul ng-show="!errors.length" class="notes-list">
+            <li ng-repeat="item in notes track by item.note_id" >
+                <!-- <a href="javascript:void(0)" ui-sref="item-details({itemId:item.id})"> note_content -->
+                <table>
+                    <tr>
+                        <td class="col-note" ng-bind-html="item.note_content"> </td>
+                        <td>
+                            <span class="col-remove-btn">
+                                <a class="" ng-click="deleteNote({{item.note_id}})">
+                                    <i class="j-delete"></i>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <!-- </a> -->
+            </li>
+        </ul>
+        <div class="text-center">
+            <a class="btn" ui-sref="edit-item-details({itemId:details.id})">СМЕНИ ДАТА И ЧАС</a>
+
+        </div>
+        <div class="text-center">
+
+            <a class="btn" ng-click="cancelAppointment(details.id)">ОТКАЖИ</a>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,118 @@
+<ion-view title="calendar" id="calendar">
+    <div class="custom-header">
+        <a class="vendor-btn" style="background-image:url('{{vendorImage}}')" nav-transition="none" ui-sref="menu"></a>
+        <span class="user-btn-container">
+        <a class="user-btn" style="background-image:url('{{userImage}}')" nav-transition="none" ui-sref="menu"></a>
+
+    </span>
+    </div>
+    <ion-content padding="true" class="has-custom-header" scroll="true">
+        <ion-refresher
+                pulling-text="Дръпни за обновяване..."
+                spinner="none"
+                on-refresh="updateForCurrentTab()">
+        </ion-refresher>
+        <div class="calendar-tab-controls">
+            <span>
+                <a href="javascript:void(0)" ng-click="changeTab(0)" ng-class="{'active': tabIndex==0}">
+                    <i class="j-calendar"></i>
+                </a>
+                <a href="javascript:void(0)" ng-click="changeTab(1)" ng-class="{'active': tabIndex==1}">
+                    <i class="j-clock"></i>
+                </a>
+            </span>
+        </div>
+        <div class="calendar-tab-1" ng-show="tabIndex==0">
+            <ion-scroll direction="x" class="months-scroller" delegate-handle="months-delagate">
+                <ul class="month-scroller" data-element-count="{{editDates.length}}"
+                    style="width: {{editDates.dates.length*100}}px;">
+                    <li ng-repeat="date in editDates.dates" class="{{date.current ? 'current': ''}}"
+                        ng-click="changeCurrentMonth($index)" data-index="{{$index}}">
+                        <span>{{date.month}}</span>
+                    </li>
+                </ul>
+            </ion-scroll>
+            <div class="appointment-calendar" ng-show="showCalendar">
+                <div class="calendar-labels">
+                    <span>пон</span>
+                    <span>вто</span>
+                    <span>сря</span>
+                    <span>чет</span>
+                    <span>пет</span>
+                    <span>съб</span>
+                    <span>нед</span>
+                </div>
+                <div class="calendar-col" ng-repeat="col in calendarArray">
+                    <div class="day" ng-repeat="day in col">
+                        <a href="javascript:void(0)" ng-class="{'active':day.current}" ng-click="getAppointmentsForCurrentDay(day)">
+                            <span class="c-label" >
+                            {{day.date.getDate()}}
+                        </span>
+                            <span class="c-count" ng-show="day.count">
+                            {{day.count}}
+                        </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class='time-to' ng-bind-html="upcomingReservationTimerHTML">
+            </div>
+        </div>
+        <div class="calendar-tab-2" ng-show="tabIndex==1">
+
+            <ul class="created-by-leggend">
+                <li>
+                    <div class="created_by_website" style="margin-right: 3px"></div>от Jolyy
+                </li>
+                <li>
+                    <div class="created_by_you" style="margin-right: 3px"></div>от Теб
+                </li>
+            </ul>
+            <ion-scroll direction="x" class="days-scroller" delegate-handle="days-delagate">
+                <ul class="month-scroller" data-element-count="{{editDates.length}}"
+                    style="width: {{editDates.dates.length*100}}px;">
+                    <li ng-repeat="day in editDays" class="{{day.current ? 'current': ''}}"
+                        ng-click="getAppointmentsForCurrentDay($index)" data-index="{{$index}}">
+                        <span>{{day.date}}</span>
+                    </li>
+                </ul>
+            </ion-scroll>
+            <ul ng-show="!errors.length" class="appointment-list">
+                <li ng-repeat="item in appForDay" >
+                    <a href="javascript:void(0)" ui-sref="{{ item.appointment != null ? 'item-details({itemId:item.appointment.id})' :  ' ' }}">
+                        <div class="item-left">
+                            <div class="item-left-inner {{::item.class}}">
+                                <div>{{::item.timeLabel}}</div>
+                            </div>
+                        </div>
+                        <span class="item-right {{::item.noAppointmentClass}}" >
+
+                            <span class="item-time-duration" ng-if="item.appointment">
+                                <span class="{{::item.appointment.created_by}}"></span>
+                                <span class="item-time">{{item.appointment.date | toBadgeHour}}</span>
+                                <span class="item-duration">{{item.appointment.duration}} мин</span>
+                                <span class="item-icons " ng-class="item.appointment.categories.length>1 ? 'multiple-icons': '' ">
+                                    <i class="{{::cat.icon}}" ng-repeat="cat in item.appointment.categories"></i>
+                                    <div class="item-arrow" style="top: {{::item.arrowTop}}"></div>
+                                </span>
+                            </span>
+                            <span class="item-heading" ng-if="item.appointment && (item.appointment.duration >= 20)">
+                               {{item.appointment.name}}
+                            </span>
+                            <span class="item-client" ng-if="item.appointment && (item.appointment.duration >= 35)">
+                                {{item.appointment.client}}
+                            </span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </ion-content>
+
+    <div class="bottom-fixed-container no-gradient">
+        <a class="btn btn-icon btn-right" ui-sref="reserve-person">
+            <i class="j-add"></i>
+        </a>
+
+    </div>
+</ion-view>

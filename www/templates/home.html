@@ -1,0 +1,54 @@
+<ion-view title="Home" id="home-page">
+    <div class="custom-header">
+        <a class="vendor-btn" style="background-image:url('{{vendorImage}}')" nav-transition="none" ui-sref="menu"></a>
+        <span class="user-btn-container">
+        <a class="user-btn" style="background-image:url('{{userImage}}')" nav-transition="none" ui-sref="menu"></a>
+
+    </span>
+    </div>
+    <ion-content padding="true" class="has-custom-header" scroll="true">
+        <ion-refresher
+                pulling-text="Дръпни за обновяване..."
+                spinner="none"
+                on-refresh="loadAppointments()">
+        </ion-refresher>
+        <div class="label label-warning text-center">
+            <p ng-repeat="error in errors">
+                {{error}}
+            </p>
+        </div>
+        <ul ng-show="!errors.length" class="appointment-list">
+            <li ng-repeat="item in appointments track by item.id" >
+                <a href="javascript:void(0)" ui-sref="item-details({itemId:item.id})">
+                    <span class="item-left">
+                        <span class="item-left-inner">
+                            <span class="badge-date" ng-bind-html="item.date | toBadgeDate">
+                        </span>
+                        <span class="item-icons " ng-class="item.categories.length>1 ? 'multiple-icons': '' ">
+                            <i class="{{::cat.icon}}" ng-repeat="cat in item.categories"></i>
+                        </span>
+                        </span>
+                    </span>
+                    <span class="item-right">
+                        <span class="item-time-duration">
+                            <span class="item-time">{{item.date | toBadgeHour}}</span>
+                            <span class="item-duration">{{item.duration}} мин</span>
+                        </span>
+                        <span class="item-heading">
+                            {{item.name}}
+                        </span>
+                        <span class="item-client">
+                            {{item.client}}
+                        </span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </ion-content>
+    <div class="bottom-fixed-container no-gradient">
+        <a class="btn btn-icon btn-right" ui-sref="reserve-person" >
+            <i class="j-add"></i>
+        </a>
+
+    </div>
+</ion-view>

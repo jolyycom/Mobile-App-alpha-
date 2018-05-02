@@ -1,0 +1,45 @@
+<ion-view title="Reserve Date" id="reserve-date">
+    <div class="custom-header">
+        <a class="vendor-btn" style="background-image:url('{{vendorImage}}')" nav-transition="none" ui-sref="menu"></a>
+        <span class="user-btn-container">
+        <a class="user-btn" style="background-image:url('{{userImage}}')" nav-transition="none" ui-sref="menu"></a>
+
+    </span>
+    </div>
+    <ion-content padding="true" class="has-custom-header">
+        <ul class="progress-container">
+            <li><span>1</span></li>
+            <li ><span>2</span></li>
+            <li class="active"><span>3</span></li>
+        </ul>
+
+        <div class="label label-warning text-center">
+            <p ng-repeat="error in errors">
+                {{error}}
+            </p>
+        </div>
+
+        <h4>Резервация на час</h4>
+        <div class="step-description">Избери дата и час:</div>
+
+        <div class="month-placeholder" ng-bind-html="currentMonth"></div>
+        <ion-scroll direction="x" class="dates-scroller" delegate-handle="dates-delagate" on-scroll="onScroll()">
+            <ul class="date-scroller" data-element-count="{{editDates.length}}" style="width: {{editDates.dates.length*55}}px;">
+                <li ng-repeat="date in editDates.dates" class="{{date.current ? 'current': ''}}" ng-click="changeCurrentDate($index)" data-index="{{$index}}">
+                    <span> {{date.weekDay}}</span>
+                    <span> {{date.date}}</span>
+                </li>
+            </ul>
+        </ion-scroll>
+        <div class="times-container" ng-show="times">
+            <ul>
+                <li ng-repeat="time in times" ng-click="pickTime(time,$event)">{{time}}</li>
+            </ul>
+        </div>
+
+    </ion-content>
+    <div class="bottom-fixed-container force-background" ng-class="btnClass">
+        <a class="btn btn-black" href="javascript:void (0);" ng-click="goBack(true);">назад</a>
+        <a class="btn btn-hides" href="javascript:void (0);" ng-click="save($event)">запази</a>
+    </div>
+</ion-view>

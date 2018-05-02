@@ -1,0 +1,31 @@
+<ion-view title="menu" id="menu" >
+    <div class="custom-header">
+        <a class="vendor-btn" style="background-image:url('{{vendorImage}}')" ng-click="goBack()"></a>
+        <span class="user-btn-container">
+        <a class="menu-close-btn" ng-click="goBack();">
+            <i class="j-x-app"></i>
+        </a>
+    </span>
+    </div>
+    <ion-content scroll="false" padding="true" class="has-custom-header">
+        <div class="centering-container">
+            <div class="centered-item">
+                <ul class="menu-links">
+                    <li>
+                        <a ui-sref="home" nav-transition="none">Резервации</a>
+                    </li>
+                    <li>
+                        <a ui-sref="calendar" nav-transition="none">Календар</a>
+                    </li>
+                    <li style="display: none">
+                        <a class="inactive" href="javascript:void(0)">Jolyy Live</a>
+                    </li>
+                    <li>
+                        <a href="#" ng-click="logout($event)" nav-transition="none" >Изход</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

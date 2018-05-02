@@ -1,0 +1,58 @@
+<ion-view title="edit appointment" id="item-details-edit">
+    <div class="custom-header custom-header-slim">
+        <a class="menu-close-btn" ng-click="goBack(true);">
+            <i class="j-arrow-l"></i>
+        </a>
+    </div>
+    <ion-content padding="true" class="has-custom-header has-custom-header-slim">
+        <div class="label label-warning text-center">
+            <p ng-repeat="error in errors">
+                {{error}}
+            </p>
+        </div>
+        <div class="date-badge-container">
+            <div class="badge-date" ng-bind-html="details.date | toBadgeDate">
+
+            </div>
+            <div class="badge-hour">{{details.date | toBadgeHour}}</div>
+        </div>
+        <div class="details-heading">{{details.name}}</div>
+        <table>
+            <tr>
+                <td ng-repeat="cat in details.categories" class="category-column">
+                    <!--Categories-->
+                    <i class="{{cat.icon}}"></i>
+                    <span>{{cat.name}}</span>
+                </td>
+                <td>
+                    <!--Duration-->
+                    <i class="j-clock"></i>
+                    <span>{{details.duration}}</span>
+                </td>
+                <td>
+                    <!--Client-->
+                    <span class="client-image" style="background-image: url('{{details.clientImage | orDefaultImage}}');"></span>
+                    <span class="client-name">{{details.client}}</span>
+                </td>
+            </tr>
+        </table>
+        <div class="general-message">Изберете дата и час</div>
+        <div class="month-placeholder" ng-bind-html="currentMonth"></div>
+        <ion-scroll direction="x" class="dates-scroller" delegate-handle="dates-delagate" on-scroll="onScroll()">
+            <ul class="date-scroller" data-element-count="{{editDates.length}}" style="width: {{editDates.dates.length*55}}px;">
+                <li ng-repeat="date in editDates.dates" class="{{date.current ? 'current': ''}}" ng-click="changeCurrentDate($index)" data-index="{{$index}}">
+                    <span> {{date.weekDay}}</span>
+                    <span> {{date.date}}</span>
+                </li>
+            </ul>
+        </ion-scroll>
+        <div class="times-container" ng-show="times">
+            <ul>
+                <li ng-repeat="time in times" ng-click="pickTime(time,$event)">{{time}}</li>
+            </ul>
+        </div>
+    </ion-content>
+    <div class="bottom-fixed-container" ng-class="btnClass">
+        <a class="btn btn-hides" href="#" ng-click="done($event)">готово</a>
+    </div>
+</ion-view>

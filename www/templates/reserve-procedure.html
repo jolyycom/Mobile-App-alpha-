@@ -1,0 +1,50 @@
+<ion-view title="Home" id="reserve-procedure">
+    <div class="custom-header">
+        <a class="vendor-btn" style="background-image:url('{{vendorImage}}')" nav-transition="none" ui-sref="menu"></a>
+        <span class="user-btn-container">
+        <a class="user-btn" style="background-image:url('{{userImage}}')" nav-transition="none" ui-sref="menu"></a>
+
+    </span>
+    </div>
+    <ion-content padding="true" class="has-custom-header">
+        <ul class="progress-container">
+            <li><span>1</span></li>
+            <li class="active"><span>2</span></li>
+            <li><span>3</span></li>
+        </ul>
+
+        <div class="label label-warning text-center">
+            <p ng-repeat="error in errors">
+                {{error}}
+            </p>
+        </div>
+
+        <h4>Резервация на час</h4>
+        <div class="step-description">Избери процедура от списъка:</div>
+
+        <div class="reserve-search-container" ng-class="activateClass">
+            <input type="text" name="client" placeholder="име на процедура...." ng-model="form.searchField">
+        </div>
+        <div class="suggestion-list">
+            <ion-spinner ng-show="!hideSpinner"></ion-spinner>
+            <ul>
+                <li ng-repeat="item in list track by item.id" ng-click="chooseProcedure(item.id)" ng-class="item.class">
+                    <ul class="cat-icons-container" ng-class="{'multiple-icons':item.categories.length>1}">
+                        <li ng-repeat="cat in item.categories">
+                            <i class="{{cat.icon}}"></i>
+                        </li>
+                    </ul>
+                    <span class="procedure-name">{{item.name}}</span>
+                    <span class="procedure-time">
+                        <span>{{item.duration}}</span>
+                        <span>{{item.cost}}</span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </ion-content>
+    <div class="bottom-fixed-container" ng-class="{'btn-hidden': currentProcedure.id==0}">
+        <a class="btn btn-black" href="javascript:void (0);" ng-click="goBack(true);">назад</a>
+        <a class="btn btn-hides" href="javascript:void (0);" ui-sref="reserve-date({clientId:currentClient.id,clientName:currentClient.name,procedureId: currentProcedure.id, procedureDuration: currentProcedure.duration})">напред</a>
+    </div>
+</ion-view>

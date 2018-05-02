@@ -1,0 +1,23 @@
+<ion-view title="Login" id="login-view">
+  <ion-content padding="true" class="" scroll="true">
+    <div class="centering-container">
+      <div class="centered-item">
+        <img src="img/jolyy_logo.png" id="logo" >
+        <form id="login-form" ng-submit="login()">
+            <input type="text" name="vendor" id="vendor" ng-model="form.vendor" placeholder="администратор на салон..." autocomplete="true">
+            <input type="text" name="name" id="name" ng-model="form.name" placeholder="специалист..." autocomplete="true">
+            <input type="password" name="password" id="password" ng-model="form.password" placeholder="парола...">
+            <input type="submit" style="display: none">
+        </form>
+          <div class="label label-warning text-center">
+              <p ng-repeat="error in errors">
+                  {{error}}
+              </p>
+          </div>
+      </div>
+    </div>
+  </ion-content>
+    <div class="bottom-fixed-container">
+        <a class="btn" href="#" ng-click="login()">влез</a>
+    </div>
+</ion-view>
