@@ -1,0 +1,103 @@
+@font-face {
+  font-family: 'jolyy';
+  src: url('../font/jolyy.eot?98091674');
+  src: url('../font/jolyy.eot?98091674#iefix') format('embedded-opentype'),
+       url('../font/jolyy.woff2?98091674') format('woff2'),
+       url('../font/jolyy.woff?98091674') format('woff'),
+       url('../font/jolyy.ttf?98091674') format('truetype'),
+       url('../font/jolyy.svg?98091674#jolyy') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'jolyy';
+    src: url('../font/jolyy.svg?98091674#jolyy') format('svg');
+  }
+}
+*/
+ 
+ [class^="j-"]:before, [class*=" j-"]:before {
+  font-family: "jolyy";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.j-cash-minus:before { content: '\e800'; } /* '' */
+.j-cash-sum:before { content: '\e801'; } /* '' */
+.j-coin:before { content: '\e802'; } /* '' */
+.j-face:before { content: '\e803'; } /* '' */
+.j-hair:before { content: '\e804'; } /* '' */
+.j-heart:before { content: '\e805'; } /* '' */
+.j-home-res:before { content: '\e806'; } /* '' */
+.j-home-rev:before { content: '\e807'; } /* '' */
+.j-home-serv:before { content: '\e808'; } /* '' */
+.j-map-pin:before { content: '\e809'; } /* '' */
+.j-massage:before { content: '\e80a'; } /* '' */
+.j-nails:before { content: '\e80b'; } /* '' */
+.j-shield:before { content: '\e80c'; } /* '' */
+.j-tick:before { content: '\e80d'; } /* '' */
+.j-wallet:before { content: '\e80e'; } /* '' */
+.j-x:before { content: '\e80f'; } /* '' */
+.j-a-dashboard:before { content: '\e810'; } /* '' */
+.j-a-procedures:before { content: '\e811'; } /* '' */
+.j-a-profile:before { content: '\e812'; } /* '' */
+.j-a-reports:before { content: '\e813'; } /* '' */
+.j-a-reservations:before { content: '\e814'; } /* '' */
+.j-a-reservations-2:before { content: '\e815'; } /* '' */
+.j-arrow-d:before { content: '\e816'; } /* '' */
+.j-arrow-l:before { content: '\e817'; } /* '' */
+.j-arrow-r:before { content: '\e818'; } /* '' */
+.j-a-settings:before { content: '\e819'; } /* '' */
+.j-a-support:before { content: '\e81a'; } /* '' */
+.j-bag:before { content: '\e81b'; } /* '' */
+.j-best-seller:before { content: '\e81c'; } /* '' */
+.j-heart-3:before { content: '\e81d'; } /* '' */
+.j-heart-n:before { content: '\e81e'; } /* '' */
+.j-share:before { content: '\e81f'; } /* '' */
+.j-blog:before { content: '\e820'; } /* '' */
+.j-body:before { content: '\e821'; } /* '' */
+.j-bow-tie:before { content: '\e822'; } /* '' */
+.j-facebook:before { content: '\e823'; } /* '' */
+.j-instagram:before { content: '\e824'; } /* '' */
+.j-phone:before { content: '\e825'; } /* '' */
+.j-mail:before { content: '\e826'; } /* '' */
+.j-fit:before { content: '\e827'; } /* '' */
+.j-add:before { content: '\e828'; } /* '' */
+.j-calendar:before { content: '\e829'; } /* '' */
+.j-clock:before { content: '\e82a'; } /* '' */
+.j-delete:before { content: '\e82b'; } /* '' */
+.j-x-app:before { content: '\e82c'; } /* '' */
+.j-arrow-l-1:before { content: '\e82d'; } /* '' */
